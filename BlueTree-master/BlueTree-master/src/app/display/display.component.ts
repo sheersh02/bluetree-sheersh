@@ -17,67 +17,54 @@ export class DisplayComponent implements OnInit {
   displayedColumns: string[] = ['name', 'email' , 'dob', 'age','salary', 'status','action'];
   dataSource !: MatTableDataSource<any>;
 
-  @ViewChild(MatPaginator) paginator !: MatPaginator;
+
   @ViewChild(MatSort) sort !: MatSort;
-  constructor(private dialog:MatDialog,private api:ApiService){}
+  constructor(private dialog:MatDialog,private server:ApiService){}
+ 
   ngOnInit(): void {
-    this.getAllUser()
+    this.getAllEmp()
   }
 
   
   openDialog() {
     this.dialog.open(DialogComponent, {
      width:`30%`
-    }).afterClosed().subscribe(val =>{
-      if(val == 'save'){
-        this.getAllUser();
+    }).afterClosed().subscribe(data =>{
+      if(data == 'save'){
+        this.getAllEmp();
       }
     })
   }
 
-  getAllUser(){
-    this.api.getUser().subscribe({
+  getAllEmp(){
+    this.server.getEmp().subscribe({
       next:(res)=>{      
         this.dataSource = new MatTableDataSource(res);      
-        // if(res.value.status =="true"){
-        //   this.trueFalse = "Active"
-        // }else{
-        //   this.trueFalse = "Inactive"
-        // }
-        this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort
       },
       error:()=>{
-        alert("error")
+        alert("error while loading data")
       }
     })
   }
 
-  editUser(row:any){
+  editEmp(data:any){
     this.dialog.open(DialogComponent,{
-      width:'30%',data:row
-    }).afterClosed().subscribe(val=>{
-      if(val=='update'){
-        this.getAllUser();
+      width:'30%',data:data
+    }).afterClosed().subscribe(data=>{
+      if(data=='update'){
+        this.getAllEmp();
       }
     })
   }
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  deleteUser(id:any){
-    this.api.deleteUser(id).subscribe({
+  deleteEmp(id:any){
+    this.server.deleteEmp(id).subscribe({
       next:(res)=>{
-        alert("User Deleted Successfully");
-        this.getAllUser();
+        alert("deleted one entry");
+        this.getAllEmp();
       },error:()=>{
-        alert("Error while Deleting The Record")
+        alert("Error while Deleting The entry")
       }
     })
   }

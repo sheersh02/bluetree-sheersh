@@ -1,71 +1,67 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    </button>
-    <span>Employee Managment System </span>
-    <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openDialog()">Add User</button>
-  </mat-toolbar>
-  
-  <div class="container">
-    <div style="margin-top: 10px;">
-      
-      
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-      
-         
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-            <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-          </ng-container>
-      
-         
-          <ng-container matColumnDef="email">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Email Id </th>
-            <td mat-cell *matCellDef="let row"> {{row.email}} </td>
-          </ng-container>
-      
-   
-          <ng-container matColumnDef="dob">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date Of Birth </th>
-            <td mat-cell *matCellDef="let row"> {{row.dob | date}} </td>
-          </ng-container>
-      
-        
-          <ng-container matColumnDef="age">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Age </th>
-            <td mat-cell *matCellDef="let row"> {{row.age}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="salary">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Salary </th>
-            <td mat-cell *matCellDef="let row"> {{row.salary}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="status" >
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-            <td mat-cell *matCellDef="let row" > {{row.status | activeInactive}} </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
-            <td mat-cell *matCellDef="let row"> 
-              <button mat-icon-button (click)="editUser(row)" >
-                <mat-icon>edit</mat-icon>
-              </button>
-              <button (click)="deleteUser(row.id)" mat-icon-button >
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-      
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <span>Employee Managment System </span>
+  <span class="example-spacer"></span>
 
-          
-        </table>
-      
-      </div>
-      
+  <mat-icon class="swift" (click)="openDialog()">add_box</mat-icon>
+</mat-toolbar>
+
+<div class="container">
+  <div style="margin-top: 10px">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email Id</th>
+          <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="dob">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Date Of Birth
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.dob | date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+          <td mat-cell *matCellDef="let row">{{ row.age }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="salary">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Salary</th>
+          <td mat-cell *matCellDef="let row">{{ row.salary }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.status | activeInactive }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <button mat-icon-button (click)="editEmp(row)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button (click)="deleteEmp(row.id)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          class="a"
+          mat-row
+          *matRowDef="let row; columns: displayedColumns"
+        ></tr>
+      </table>
     </div>
   </div>
+</div>

@@ -54,8 +54,7 @@ export class DialogComponent implements OnInit {
   
 
   ngOnInit(): void {
-    // console.log(this.editData);
-    // console.log(this.editData.id);
+  
     
     this.getDate();
 
@@ -69,23 +68,15 @@ export class DialogComponent implements OnInit {
       this.userForm.controls['salary'].setValue(this.editData.salary);
       this.userForm.controls['status'].setValue(this.editData.status)
     }
-    // this.userForm = this.formBuilder.group({
-    //   name : ['',Validators.required],
-    //   email : ['',Validators.required],
-    //   dob : ['',Validators.required],
-    //   age : ['',Validators.required],
-    //   salary : ['',Validators.required],
-    //   status : ['',Validators.required],
-      
-    // })
+   
   }
 
   
-  addUser(){  
+  addEmp(){  
     if(!this.editData){
       if(this.userForm.valid){
         this.userForm.value.age = this.getAge(this.userForm.value.dob);
-        this.api.postUser(this.userForm.value).subscribe({
+        this.api.postEmp(this.userForm.value).subscribe({
           next:(res)=>{
             alert("user added successfully");
             this.userForm.reset();
@@ -96,13 +87,13 @@ export class DialogComponent implements OnInit {
         })
       }
     }else{
-      this.updateUser();
+      this.updateEmp();
     } 
   }
 
-  updateUser(){
+  updateEmp(){
     this.userForm.value.age = this.getAge(this.userForm.value.dob)
-    this.api.putUser(this.userForm.value,this.editData.id).subscribe({
+    this.api.putEmp(this.userForm.value,this.editData.id).subscribe({
       next:(res)=>{
         alert("User Details Updated successfully");
         this.userForm.reset();

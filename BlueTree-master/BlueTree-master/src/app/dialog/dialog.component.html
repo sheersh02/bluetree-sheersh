@@ -1,4 +1,4 @@
-<button class="top" mat-raised-button  mat-dialog-close><mat-icon> X</mat-icon></button>
+<button class="top" mat-raised-button  mat-dialog-close><mat-icon>skip_previous</mat-icon></button>
 <h1 mat-dialog-title>Add User Form</h1>
 <div mat-dialog-content>
   <form [formGroup]="userForm">
@@ -41,7 +41,7 @@
       <mat-label>Status</mat-label>
       <mat-select formControlName="status" placeholder="status">
         <mat-option value="true">Active</mat-option>
-        <mat-option value="false">Inactive</mat-option>
+        <mat-option value="false">Not-active</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -50,5 +50,5 @@
 </div>
 <div mat-dialog-action [align]="'end'">
   <!-- <button mat-raised-button color="warn" mat-dialog-close>close</button> -->
-  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addUser()">{{actionBtn}}</button>
+  <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addEmp()">{{actionBtn}}</button>
 </div>
